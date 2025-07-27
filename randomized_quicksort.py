@@ -21,12 +21,14 @@ def randomized_quicksort(arr):
     """
     # Base case: arrays of length 0 or 1 are already sorted
     if len(arr) <= 1:
+        print(f"Base case reached: {arr}")
         return arr
     
     # Randomly select a pivot element to avoid worst-case scenarios
     # This helps achieve better average performance compared to always
     # choosing the first or last element
     pivot = random.choice(arr)
+    print(f"Processing array: {arr}, Selected pivot: {pivot}")
     
     # Partition the array into three parts:
     # - left: elements smaller than the pivot
@@ -36,6 +38,14 @@ def randomized_quicksort(arr):
     middle = [x for x in arr if x == pivot]
     right = [x for x in arr if x > pivot]
     
+    print(f"  Left partition: {left}")
+    print(f"  Middle partition: {middle}")
+    print(f"  Right partition: {right}")
+    
     # Recursively sort the left and right partitions, then combine
     # The middle partition is already sorted (all elements are equal)
-    return randomized_quicksort(left) + middle + randomized_quicksort(right)
+    sorted_left = randomized_quicksort(left)
+    sorted_right = randomized_quicksort(right)
+    result = sorted_left + middle + sorted_right
+    print(f"Combined result: {result}")
+    return result
